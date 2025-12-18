@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FunToon Planet - Official Website</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Fredoka for a fun, cartoonish look -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Fredoka', 'sans-serif'],
+                    },
+                    colors: {
+                        'fun-blue': '#2E1065',
+                        'fun-purple': '#7C3AED',
+                        'fun-yellow': '#FBBF24',
+                        'fun-red': '#EF4444',
+                        'yt-red': '#FF0000',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .blob-bg {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%237C3AED' d='M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.1,-46.6C90.4,-34.1,96.1,-19.2,95.8,-4.4C95.5,10.4,89.3,25.1,79.6,37.6C69.9,50.1,56.7,60.4,42.9,68.2C29.1,76,14.5,81.4,-0.6,82.4C-15.7,83.4,-31.4,80.1,-44.6,71.8C-57.8,63.5,-68.5,50.2,-76.3,35.4C-84.1,20.6,-89,4.3,-86.6,-10.8C-84.2,-25.9,-74.5,-39.8,-62.7,-49.6C-50.9,-59.4,-37,-65.1,-23.4,-72.6C-9.8,-80.1,3.5,-89.4,17.4,-90.4C31.3,-91.4,45.8,-84.1,44.7,-76.4Z' transform='translate(100 100)' /%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            opacity: 0.1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 4s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #7C3AED; 
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5b21b6; 
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2 text-2xl font-bold text-fun-purple hover:scale-105 transition-transform">
+                <i class="fa-solid fa-planet text-fun-yellow"></i>
+                <span>FunToon<span class="text-fun-yellow">Planet</span></span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 items-center font-semibold text-lg">
+                <a href="#home" class="hover:text-fun-purple transition-colors">Home</a>
+                <a href="#videos" class="hover:text-fun-purple transition-colors">Videos</a>
+                <a href="#about" class="hover:text-fun-purple transition-colors">About</a>
+                <a href="https://www.youtube.com/@FunToonPlanet-partha?sub_confirmation=1" target="_blank" class="bg-yt-red text-white px-6 py-2 rounded-full hover:bg-red-700 transition-all shadow-lg hover:shadow-red-500/30 transform hover:-translate-y-1">
+                    <i class="fa-brands fa-youtube mr-2"></i>Subscribe
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-fun-purple">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 flex flex-col space-y-4 shadow-lg text-center font-semibold">
+            <a href="#home" class="block py-2 hover:bg-gray-100 rounded">Home</a>
+            <a href="#videos" class="block py-2 hover:bg-gray-100 rounded">Videos</a>
+            <a href="#about" class="block py-2 hover:bg-gray-100 rounded">About</a>
+            <a href="https://www.youtube.com/@FunToonPlanet-partha?sub_confirmation=1" target="_blank" class="block py-2 text-yt-red">Subscribe Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative bg-fun-blue text-white overflow-hidden min-h-[600px] flex items-center justify-center">
+        <!-- Animated Background Stars -->
+        <div id="stars-container" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+        
+        <!-- Background Blobs -->
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-fun-purple rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"></div>
+        <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-fun-yellow rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float" style="animation-delay: 2s"></div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="mb-6 inline-block animate-bounce-slow">
+                <i class="fa-solid fa-rocket text-6xl text-fun-yellow filter drop-shadow-lg"></i>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                Welcome to <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-fun-yellow to-orange-500">FunToon Planet</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-gray-200">
+                Your ultimate destination for cartoons, fun animations, and endless entertainment! Created by Partha.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="https://www.youtube.com/@FunToonPlanet-partha" target="_blank" class="bg-yt-red text-white text-lg font-bold px-8 py-4 rounded-full shadow-xl hover:bg-red-700 transition-all hover:scale-110 flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-play"></i> Watch Videos
+                </a>
+                <a href="#about" class="bg-white text-fun-blue text-lg font-bold px-8 py-4 rounded-full shadow-xl hover:bg-gray-100 transition-all hover:scale-105">
+                    Explore More
+                </a>
+            </div>
+        </div>
+        
+        <!-- Wave Divider -->
+        <div class="absolute bottom-0 w-full leading-none">
+            <svg class="block w-full h-16 md:h-24" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path fill="#f9fafb" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,197.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2">
+                    <div class="relative">
+                        <!-- Decorative shapes -->
+                        <div class="absolute top-0 -left-4 w-72 h-72 bg-fun-yellow rounded-full mix-blend-multiply filter blur-2xl opacity-50"></div>
+                        <div class="absolute bottom-0 -right-4 w-72 h-72 bg-fun-purple rounded-full mix-blend-multiply filter blur-2xl opacity-50"></div>
+                        <!-- Placeholder Image mimicking a channel mascot or vibe -->
+                        <div class="relative bg-white p-4 rounded-3xl shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
+                             <!-- Using a fun, safe placeholder image -->
+                            <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=1000&auto=format&fit=crop" alt="FunToon Planet Vibes" class="rounded-2xl w-full object-cover h-80">
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 text-center md:text-left">
+                    <h2 class="text-4xl font-bold text-fun-blue mb-4">About the Planet</h2>
+                    <div class="w-20 h-2 bg-fun-yellow mb-6 mx-auto md:mx-0 rounded-full"></div>
+                    <p class="text-xl text-gray-600 mb-6 leading-relaxed">
+                        Welcome to <strong>FunToon Planet</strong>, created by Partha! This is your go-to corner of the internet for smiles, laughter, and amazing stories. We bring you colorful animations, funny shorts, and adventures that are out of this world!
+                    </p>
+                    <p class="text-lg text-gray-500 mb-8">
+                        Whether you love classic comedy or new adventures, there's always something new to discover here. Fasten your seatbelts and get ready for a fun ride!
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                        <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100">
+                            <i class="fa-solid fa-face-laugh-squint text-fun-yellow text-xl"></i>
+                            <span class="font-bold text-gray-700">Comedy</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100">
+                            <i class="fa-solid fa-palette text-fun-purple text-xl"></i>
+                            <span class="font-bold text-gray-700">Animation</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100">
+                            <i class="fa-solid fa-rocket text-fun-red text-xl"></i>
+                            <span class="font-bold text-gray-700">Adventure</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Grid Section -->
+    <section id="videos" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-fun-blue mb-4">Latest on the Channel</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Check out our latest and most popular videos. Don't forget to like and comment!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Video Card 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="relative h-48 bg-gray-800 overflow-hidden">
+                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                         <!-- Generic colorful placeholder since specific thumbnails aren't available -->
+                        <img src="https://images.unsplash.com/photo-1535581652167-3d6b98636053?q=80&w=800&auto=format&fit=crop" alt="Cartoon Thumbnail" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute bottom-4 left-4 z-20 text-white">
+                            <span class="bg-yt-red text-xs font-bold px-2 py-1 rounded">NEW</span>
+                        </div>
+                        <a href="https://www.youtube.com/@FunToonPlanet-partha/videos" target="_blank" class="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="bg-yt-red w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
+                                <i class="fa-solid fa-play text-white ml-1"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-fun-purple transition-colors">Funny Cartoon Moments</h3>
+                        <p class="text-gray-500 text-sm mb-4">Laugh out loud with our collection of the funniest animated clips!</p>
+                        <a href="https://www.youtube.com/@FunToonPlanet-partha/videos" target="_blank" class="text-fun-blue font-bold hover:underline">Watch Now <i class="fa-solid fa-arrow-right ml-1 text-sm"></i></a>
+                    </div>
+                </div>
+
+                <!-- Video Card 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="relative h-48 bg-gray-800 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1ef4d?q=80&w=800&auto=format&fit=crop" alt="Adventure Thumbnail" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <a href="https://www.youtube.com/@FunToonPlanet-partha/shorts" target="_blank" class="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="bg-yt-red w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
+                                <i class="fa-solid fa-play text-white ml-1"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-fun-purple transition-colors">Epic Adventures</h3>
+                        <p class="text-gray-500 text-sm mb-4">Join us on an epic journey across the FunToon galaxy.</p>
+                        <a href="https://www.youtube.com/@FunToonPlanet-partha/shorts" target="_blank" class="text-fun-blue font-bold hover:underline">Watch Now <i class="fa-solid fa-arrow-right ml-1 text-sm"></i></a>
+                    </div>
+                </div>
+
+                <!-- Video Card 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="relative h-48 bg-gray-800 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?q=80&w=800&auto=format&fit=crop" alt="Shorts Thumbnail" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute bottom-4 left-4 z-20 text-white">
+                            <span class="bg-fun-yellow text-fun-blue text-xs font-bold px-2 py-1 rounded">SHORTS</span>
+                        </div>
+                        <a href="https://www.youtube.com/@FunToonPlanet-partha/shorts" target="_blank" class="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="bg-yt-red w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
+                                <i class="fa-solid fa-play text-white ml-1"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-fun-purple transition-colors">Best Shorts Compilation</h3>
+                        <p class="text-gray-500 text-sm mb-4">Quick doses of fun! Perfect for a short break.</p>
+                        <a href="https://www.youtube.com/@FunToonPlanet-partha/shorts" target="_blank" class="text-fun-blue font-bold hover:underline">Watch Now <i class="fa-solid fa-arrow-right ml-1 text-sm"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <a href="https://www.youtube.com/@FunToonPlanet-partha/videos" target="_blank" class="inline-block border-2 border-fun-purple text-fun-purple font-bold px-8 py-3 rounded-full hover:bg-fun-purple hover:text-white transition-all">
+                    View All Videos on YouTube
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-fun-purple text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 30px 30px;"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Join the FunToon Family!</h2>
+            <p class="text-xl mb-10 text-purple-100 max-w-2xl mx-auto">Don't miss out on the laughter. Subscribe to our YouTube channel and turn on notifications!</p>
+            <a href="https://www.youtube.com/@FunToonPlanet-partha?sub_confirmation=1" target="_blank" class="bg-white text-fun-purple text-xl font-bold px-10 py-4 rounded-full shadow-2xl hover:scale-105 transition-transform inline-flex items-center gap-3">
+                <i class="fa-brands fa-youtube text-yt-red text-2xl"></i> Subscribe Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <a href="#" class="flex items-center gap-2 text-2xl font-bold text-white mb-2 justify-center md:justify-start">
+                        <i class="fa-solid fa-planet text-fun-yellow"></i>
+                        <span>FunToon<span class="text-fun-yellow">Planet</span></span>
+                    </a>
+                    <p class="text-gray-400 text-sm">Making the world laugh, one cartoon at a time.</p>
+                </div>
+                
+                <div class="flex gap-6 mb-6 md:mb-0">
+                    <a href="https://www.youtube.com/@FunToonPlanet-partha" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-yt-red hover:text-white transition-all">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-600 hover:text-white transition-all">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <hr class="border-gray-800 my-8">
+            
+            <div class="text-center text-gray-500 text-sm">
+                <p>&copy; 2024 FunToon Planet by Partha. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Generate Random Stars in Hero Background
+        const starsContainer = document.getElementById('stars-container');
+        const starCount = 50;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            
+            // Random positioning
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            const size = Math.random() * 3 + 1; // 1px to 4px
+            const delay = Math.random() * 5;
+            
+            star.style.left = `${x}%`;
+            star.style.top = `${y}%`;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.animationDelay = `${delay}s`;
+            
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
